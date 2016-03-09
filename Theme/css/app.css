@@ -7664,7 +7664,7 @@ h4 {
   }
 }
 .topbar--Wrap {
-  height: 40px;
+  height: 42px;
   background: blue;
 }
 .topbar--Wrap .topbar--wrap--form {
@@ -7687,10 +7687,12 @@ h4 {
   color: #333;
 }
 .topbar--Wrap .topbar--wrap--nav {
-  height: 40px;
+  height: 42px;
   list-style-type: none;
   padding: 0;
   margin: 0;
+  font-family: Walsheim-Bold,'Arial Black',sans-serif; 
+  font-size:16px;
 }
 .topbar--Wrap .topbar--wrap--nav .dropdown-menu {
   margin-top: -1px;
@@ -7846,13 +7848,11 @@ background-color:#ed1c24;
 cursor: pointer;
 transition: .5s
 }
-
 #name_search{
-	background-color:#fff;
-	color:#000;
+	background-color:#fff;	
 }
 
-#register{
+#topbar_register, #topbar_myaccount{
 background-color:#ed1c24;
 padding:6px;
 }
@@ -7903,4 +7903,3 @@ padding:6px;
 	height:200px;
 	padding:5px;
 }
-
