@@ -1,0 +1,14 @@
+type
+website
+----------
+name
+Greatbeer
+----------
+version
+5
+----------
+install_description
+
+----------
+description
+<h1>Greatbeer</h1>

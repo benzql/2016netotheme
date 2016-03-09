@@ -1,0 +1,58 @@
+<!--# Start Content# ##-->
+			<!--##[%DATA id:'error' if:'ne' value:''%]##--><div class="errorbox"><ul><li>[@error@]</li></ul></div><!--##[%END DATA%]##-->
+			<form action="[%URL type:'cms' id:'[@content_id@]'%][%END URL%]?templatehead=empty&amp;templatefoot=empty" method="post">
+<input type="hidden" name="frm" value="[%nohtml%][@form_index@][%end nohtml%]">
+<input type="hidden" name="require_first_name" value="First Name">
+<input type="hidden" name="require_email" value="Email">
+      <table style="font-family:Arial, Helvetica, sans-serif, 'Century Gothic'; font-size:12px"  width="100%" border="0" cellspacing="0" cellpadding="10">
+			 	<tr>
+					<td nowrap align="right"><b>First Name:</b></td>
+		      <td> 
+		      <input name="inp-first_name" type="text" value="[%nohtml%][@data_first_name@][%end nohtml%]" size="40" >
+		     	</td>
+			  </tr>
+			 	<tr>
+					<td nowrap align="right"><b>Surname:</b></td>
+		      <td> 
+		      <input name="inp-last_name" type="text" value="[%nohtml%][@data_last_name@][%end nohtml%]" size="40" >
+		     	</td>
+			  </tr>
+			 			 	<tr>
+					<td nowrap align="right"><b>Contact Phone Number:</b></td>
+		      <td> 
+		      <input name="inp-phone" type="text" value="[%nohtml%][@data_phone@][%end nohtml%]" size="40" >
+		     	</td>
+			  </tr>
+			 	<tr>
+					<td nowrap align="right"><b>Email Address:</b></td>
+		      <td> 
+		      <input name="inp-email" type="text" value="[%nohtml%][@data_email@][%end nohtml%]" size="40" >
+		     	</td>
+			  </tr>
+					<tr>
+					<td nowrap align="right"><b>Preferred Method of Contact</b></td>
+					<td>
+						<select name="inp-contact_method">
+							<option value="Phone" [%DATA id:'data_contact_method' if:'eq' value:'Phone'%][%END DATA%]>Phone</option>
+							<option value="Email" [%DATA id:'data_contact_method' if:'eq' value:'Email'%][%END DATA%]>Email</option>
+						</select>
+					</td>
+				</tr>
+			  <tr>
+			  	<td rowspan="3" align="right" valign="top"><b>Message:</b></td>
+			  	<td><textarea name="inp-msg" rows="10" style="width:100%">[%nohtml%][@data_msg@][%end nohtml%]</textarea></td>
+			  </tr>
+			  <tr>
+			    <td>  <img src="[@CONFIG:IMAGEURL@]/pixel.gif" /><br/><br />
+			   		
+			   		  <br /><br />
+			   		</td>
+			  </tr>
+			  <tr>
+			    <td>
+			    <input type="hidden" value="[@captcha_image@]" name="captcha_checksum">
+			    <input type="hidden" value="email_sent" name="inp-submit">
+			    <input type="submit" value="Send Email"></td>
+			  </tr>
+			</table>
+		</form>

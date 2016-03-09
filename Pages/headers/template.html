@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content="[%url_info name:'meta_keywords'/%]"/>
+<meta name="description" content="[%url_info name:'meta_description'/%]"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+<meta property="og:image" content="[%if [@config:current_page_type@] eq 'product'%][%asset_url type:'product' id:'[@SKU@]' thumb:'full'/%][%ELSEIF [@config:current_page_type@] eq 'content'%][%ASSET_url type:'content' id:'[@content_id@]' default:'/assets/website_logo.png'%][%/ASSET_url%][%ELSE%]/assets/website_logo.png[%/if%]"/>
+<meta property="og:title" content="[%url_info name:'page_title'/%]"/>
+<meta property="og:site_name" content="[@config:website_name@] "/>
+[@config:GOOGLE_VERIFICATION_CODE@]
+<title>[%url_info name:'page_title'/%]</title>
+<link rel="canonical" href="[@config:canonical_url@]"/>
+<link rel="shortcut icon" href="[@config:homeurl@]/assets/favicon_logo.png"/>
+<link class="theme-selector" rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/app.css[%/ntheme_asset%]" media="all"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/style.css[%/ntheme_asset%]" media="all"/>
+<script src="/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.neto.js" type="text/javascript"></script>
+[%cdn_asset html:'1' type:'css' domain:'maxcdn.bootstrapcdn.com' library:'font-awesome' version:'4.3.0'%]css/font-awesome.min.css[%/cdn_asset%]
+[%cdn_asset html:'1' type:'css' library:'jquery_ui' version:'1.11.1'%]css/custom-theme/jquery-ui-1.8.18.custom.css[%/cdn_asset%]
+[%cdn_asset html:'1' type:'css' library:'fancybox' version:'2.1.5'%]jquery.fancybox.css[%/cdn_asset%]
+<!--[if lte IE 8]>
+	[%cdn_asset html:'1' type:'js' library:'html5shiv' version:'3.7.0'%]html5shiv.js[%/cdn_asset%]
+	[%cdn_asset html:'1' type:'js' library:'respond.js' version:'1.3.0'%]respond.min.js[%/cdn_asset%]
+<![endif]-->
+[%tracking_code type:'Declaration'/%]
+</head>
+<body id="n_[@config:current_page_type@]" class="n_[@CONFIG:TEMPLATELANG@]">
+<div class="topbar--Wrap">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4 col-xs-12">
+				<form class="topbar--wrap--form" name="productsearch" method="get" action="/">
+					<input type="hidden" name="rf" value="kw"/>
+					<div class="input-group">
+						<span class="input-group-btn">
+							<button type="submit" value="Search" class="btn btn-default" id="header_search_button"><i class="fa fa-search"></i></button>
+						</span>
+						<input class="form-control ajax_search" value="[%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%]" placeholder="What are you looking for?" id="name_search" autocomplete="off" name="kw" type="text"/>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-8 hidden-xs">
+				<ul class="topbar--wrap--nav pull-right">+
+					<li><a href="tel:1300399299"><i class="fa fa-phone"></i> 1300 399 299</a></li>
+					<li><a href="tel:0415812811"><i class="fa fa-mobile"></i> 0415 812 811</a></li>
+					[%if [@config:show_wishlist@]%]					
+					<li><a href="[%url page:'account' type:'wishlist'/%]">Wishlists</a></li>
+					[%/if%]
+					[%if [@user:username@]%]
+						<li> <a href="[%url page:'account' type:'edit_pwd'/%]"><i class="fa fa-lock"></i> Change My Password</a> </li>
+						<li> <a href="[%url page:'account' type:'logout'/%]"><i class="fa fa-off"></i> Log Out</a> </li>
+					[%else%]
+						<li> <a href="[%url page:'account' type:'login'/%]" title="Login" id="login">Login</a> </li>
+						<li> <a href="[%url page:'account' type:'register'/%]" title="Register" id="register">Register</a> </li>
+					[%/if%]
+					<li class="lv1-li dropdown dropdown-hover"> <a href="[%url page:'account'/%]" [%if [@next_level@]%]class="dropdown-toggle" data-toggle="dropdown"[%/if%]><i class="fa fa-user"></i> <span class="visible-lg visible-inline-lg">[%if [@user:bill_first_name@]%][@user:bill_first_name@]'s[%else%]My[%/ if%]&nbsp;Account</span> <span class="caret"></span></a>
+						<ul class="dropdown-menu pull-right">
+							<li><a href="[%url page:'account'/%]">Account Home</a></li>
+							<li><a href="[%url page:'account'/%]#orders">Orders</a></li>
+							[%if [@config:allow_user_quote@]%]
+							<li><a href="[%url page:'account'/%]#quotes">Quotes</a></li>
+							[%/ if%]
+							<li><a href="[%url page:'account' type:'payrec'/%]">Pay Invoices</a></li>
+							<li><a href="[%url page:'account' type:'favourites'/%]">Favourites</a></li>
+							[%if [@config:show_wishlist@]%]
+							<li><a href="[%url page:'account' type:'wishlist'/%]">Wishlists</a></li>
+							[%/if%]
+							<li><a href="[%url page:'account' type:'warranty'/%]">Resolution Centre</a></li>
+							<li><a href="[%url page:'account' type:'edit_account'/%]">Edit My Details</a></li>
+							<li><a href="[%url page:'account' type:'edit_address'/%]">Edit My Address Book</a></li>
+							<li class="divider"></li>
+							[%if [@user:username@]%]
+								<li> <a href="[%url page:'account' type:'edit_pwd'/%]"><i class="fa fa-lock"></i> Change My Password</a> </li>
+								<li> <a href="[%url page:'account' type:'logout'/%]"><i class="fa fa-off"></i> Log Out</a> </li>
+							[%else%]
+								<li> <a href="[%url page:'account' type:'login'/%]" title="Login">Login</a> </li>
+								<li> <a href="[%url page:'account' type:'register'/%]" title="Register">Register</a> </li>
+							[%/if%]
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid wrapper-header">
+	<div class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">
+					<img alt="Brand" src="[@config:imageurl@]/website_logo.png" alt="[@config:company_name@]">
+				</a>
+				<ul class="navigation-list list-inline visible-xs nMobileNav">
+					<li><a href="#" class="nToggleMenu" data-target=".navbar-responsive-collapse"><span class="icon"><i class="fa fa-bars"></i></span><br>
+					Menu</a></li>
+					<li><a href="/products"><span class="icon"><i class="fa fa-gift"></i></span><br>
+					Shop</a></li>
+					<li><a href="[%url page:'checkout' type:'cart'/%]"><span class="icon"><i class="fa fa-shopping-cart"></i></span><br>
+					Cart (<span rel="a2c_item_count">[%format type:'number' dp:'0'%][%CART id:'total_items'%][%/CART%][%/format%]</span>)</a></li>
+					<li><a href="/_myacct/"><span class="icon"><i class="fa fa-user"></i></span><br>
+					Account</a></li>
+				</ul>
+			</div>
+			<div class="navbar-collapse collapse navbar-responsive-collapse">
+				<ul class="nav navbar-nav">
+					[%cache type:'menu' id:'header-content-menu'%]
+						[%menu id:'web_header'%]
+							[%param *level_1%]
+								<li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" [%if [@next_level@]%]class="dropdown-toggle"[%/if%]>[@name@] [%if [@next_level@]%]<span class="caret"></span>[%/if%]</a>
+									[%if [@next_level@]%]
+										<ul class="dropdown-menu">
+											[@next_level@]
+										</ul>
+									[%/if%]
+								</li>
+								[%/param%]
+							[%param *level_2%]
+								<li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" class="nuhover dropdown-toggle">[@name@]</a>
+									[%if [@next_level@]%]
+										<ul class="dropdown-menu dropdown-menu-horizontal">
+											[@next_level@]
+										</ul>
+									[%/if%]
+								</li>
+								[%/param%]
+							[%param *level_3%]
+								<li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]">[@name@]</a>
+									[%if [@next_level@]%]
+										<ul class="dropdown-menu dropdown-menu-horizontal">
+											[@next_level@]
+										</ul>
+									[%/if%]
+								</li>
+							[%/param%]
+						[%/menu%]
+					[%/ cache%]
+				</ul>
+				<ul class="nav navbar-nav navbar-right hidden-xs">
+					<li class="lv1-li navbar-right dropdown dropdown-hover"> <a href="[%url page:'cart'/%]" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> - (<span rel="a2c_item_count">[%format type:'number' dp:'0'%][%CART id:'total_items'%][%/CART%][%/format%]</span>) <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li class="box" id="neto-dropdown">
+								<div class="body padding" id="cartcontents"></div>
+								<div class="footer"></div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="main-content" class="container" role="main">
+	<div class="row">

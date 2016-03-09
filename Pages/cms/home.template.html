@@ -1,0 +1,102 @@
+[%load_template file:'cms/includes/sidebar.template.html'/%]    
+	[%if [@config:show_home_ads@]%]
+		[%advert type:'text' template:'carousel' limit:'10' ad_group:''%]
+			[%param *header%]
+				<div id="homepageCarousel" class="carousel slide">
+					[%if [@total_showing@] > 1%]
+						<ol class="carousel-indicators">
+							[%site_value id:'counter' type:'load'/%]
+						</ol>
+					[%/if%]
+					<div class="carousel-inner">
+			[%/param%]
+			[%param *footer%]
+					</div>
+					[%if [@total_showing@] > 1%]
+						<a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
+							<span class="fa fa-chevron-left"></span>
+						</a>
+						<a class="right carousel-control" href="#homepageCarousel" data-slide="next">
+							<span class="fa fa-chevron-right"></span>
+						</a>
+					[%/if%]
+				</div>
+			[%/param%]
+			[%param *ifempty%]
+				<a class="neto-placeholder neto-placeholder-rotator btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" href="[@config:home_url@]/_cpanel?item=adw&page=view&id=New&plan_id=1">
+					Click to add a banner<br/>
+				</a>
+			[%/param%]
+		[%/advert%]
+	[%/if%]	
+	<!--<div id="homepage_label" class="clearfix">
+		<h2><span class="label label-danger">
+			<i class="fa fa-coffee fa-lg"></i> 6 Months Warranty </span></h1>
+		<h2><span class="label label-danger">
+			<i class="fa fa-truck fa-lg"></i> Express Delivery </span></h1>
+		<h2><span class="label label-danger">
+			<i class="fa fa-check-square-o fa-lg"></i> 100% Secure Online </span></h1>	
+	</div>-->
+	<script language="javascript" type="text/javascript">
+		$(document).ready( function() {
+			$("#readmore").click( function(event) {
+				event.preventDefault();
+				if ($("#hidden_introduction").is(":visible")) {
+					$("#hidden_introduction").slideUp();
+					$("#readmore").text("Read More");
+				} else {
+					$("#hidden_introduction").slideDown();
+					$("#readmore").text("Close");
+				}
+			});
+		});
+	</script>
+	<div id="homepage-content" class="hidden-xs"> <h3>Pit Bikes, Mini Bikes, Dirt Bikes, Thumpstars & More</h3>
+		<p>DHZ is the No.1 destination for Mini Bikes and Mini Bike accessories</p>		
+		<div id="hidden_introduction">[@page_content@]</div>
+		<p class="text-right"><a href="#" class="btn btn-info" id="readmore">Read More</a></p>
+	</div>	
+	[%if [@config:show_home_ads@]%]
+		[%advert type:'product' limit:'8' template:'' ad_group:''%]
+			[%param *header%]
+				<hr />
+				<h3>Featured Products</h3>
+				<div class="row">
+			[%/param%]
+			[%param footer%]
+				</div>
+			[%/param%]
+			[%param *ifempty%]
+				[%random_products category:'0' template:'' limit:'8'%]
+					[%param *header%]
+						<hr />
+						<div class="row">
+					[%/param%]
+					[%param *footer%]
+						</div>
+					[%/param%]
+				[%/random_products%]
+			[%/param%]
+		[%/advert%]
+	[%/if%]
+	[%CONFIG id:'NARRIVALS_LIMIT' if:'ne' value:'0'%]  
+		[%new_arrivals limit:'4' template:''%][%PARAM *header%]
+		<hr />
+		<h3>New Arrivals</h3>
+		<div class="row">
+		[%END PARAM%][%PARAM *footer%]
+		</div>
+		[%END PARAM%][%PARAM *ifempty%]
+		<!-- New Arrivals here if populated -->
+		[%END PARAM%][%END new_arrivals%]
+	[%END CONFIG%]
+	[%thumb_list type:'products' template:'' filter_inpromo:'1' filter_category:'0' limit:'4'%]
+		[%param *header%]
+			<h3>On Sale</h3>
+			<div class="row">
+		[%/param%]
+		[%param *footer%]
+			</div>
+		[%/param%]
+	[%/thumb_list%]
+</div>

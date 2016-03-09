@@ -1,0 +1,14 @@
+type
+website
+----------
+name
+Ascot
+----------
+version
+5
+----------
+install_description
+
+----------
+description
+<h1>Ascot</h1>

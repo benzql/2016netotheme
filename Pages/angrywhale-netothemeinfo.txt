@@ -1,0 +1,14 @@
+type
+website
+----------
+name
+Angry Whale
+----------
+version
+5
+----------
+install_description
+
+----------
+description
+<h1>Angry Whale</h1>
