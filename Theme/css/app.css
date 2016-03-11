@@ -7850,6 +7850,7 @@ transition: .5s
 }
 #name_search{
 	background-color:#fff;	
+	color:#000;
 }
 
 #topbar_register, #topbar_myaccount{
